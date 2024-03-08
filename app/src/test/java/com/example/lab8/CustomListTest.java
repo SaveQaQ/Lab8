@@ -40,7 +40,7 @@ public class CustomListTest {
     public void addCityTest(){
         list = MockCityList();
         int listSize = list.getCount();
-        list.addCity(new City("Estevan", "SK"));
+        list.add(new City("Estevan", "SK"));
         assertEquals(list.getCount(),listSize + 1);
     }
 
@@ -57,6 +57,7 @@ public class CustomListTest {
     @Test
     void testGetCities() {
         list = MockCityList();
+        list.add(mockCity());
         assertEquals(0, mockCity().compareTo(list.getCities().get(0)));
         City city = new City("Charlottetown", "Prince Edward Island");
         list.add(city);
@@ -83,17 +84,17 @@ public class CustomListTest {
         assertThrows(IllegalArgumentException.class, () -> {
             cityList.delete(city1);
         });
-        assertEquals(2, cityList.getCities().size());
-        cityList.delete(city2);
         assertEquals(1, cityList.getCities().size());
+        cityList.delete(city2);
+        assertEquals(0, cityList.getCities().size());
     }
 
     @Test
     void tesCountCity(){
         CustomList cityList = MockCityList();
-        assertEquals(1, cityList.countCities());
+        assertEquals(0, cityList.countCities());
         City city2 = new City("Yellowknife", "Northwest Territories");
         cityList.add(city2);
-        assertEquals(2, cityList.countCities());
+        assertEquals(1, cityList.countCities());
     }
 }

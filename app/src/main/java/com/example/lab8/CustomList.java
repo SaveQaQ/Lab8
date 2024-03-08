@@ -52,22 +52,22 @@ public class CustomList extends ArrayAdapter<City> {
      */
 
     public int getCount(){
+
         return cities.size();
+
     }
-    /**
-     * this adds a city object to the list
-     *for the first phase it will be
-     empty * @param city
-     */
 
     /**
-     * this adds a city object to the list
-     *the second phase, you can add the
-     city * @param city
+     * This adds a city to the list if th ecity does not already exist
+     * @param city This is a city to add to the list
      */
-    public void addCity(City city){
+    public void add(City city){
+        if (cities.contains(city)){
+            throw new IllegalArgumentException();
+        }
         cities.add(city);
     }
+
     /**
      * This returns a sorted list of cities
      * @return Return the sorted list
@@ -75,8 +75,7 @@ public class CustomList extends ArrayAdapter<City> {
     public List getCities(){
         List list = cities;
         Collections.sort(list);
-        //return list;
-        return null;
+        return list;
     }
 
     /**
@@ -86,11 +85,9 @@ public class CustomList extends ArrayAdapter<City> {
      */
     public boolean hasCity(City city){
         if (cities.contains(city)){
-            return false;
-            //return true;
+            return true;
         }
-        return true;
-        //return false;
+        return false;
     }
 
     /**
@@ -99,7 +96,7 @@ public class CustomList extends ArrayAdapter<City> {
      */
     public void delete(City city){
         if (cities.contains(city)){
-            //cities.remove(city);
+            cities.remove(city);
         } else{
             throw new IllegalArgumentException();
         }
@@ -110,8 +107,7 @@ public class CustomList extends ArrayAdapter<City> {
      * @return Return cities size
      */
     public  int countCities(){
-        //return cities.size();
-        return 0;
+        return cities.size();
     }
 
 
